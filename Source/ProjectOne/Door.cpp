@@ -38,6 +38,4 @@ void ADoor::Tick(float DeltaTime)
 	{
 		DoorComponent->bIsOpen = false;
 	}
-
-
 }

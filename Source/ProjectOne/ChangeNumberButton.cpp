@@ -11,7 +11,7 @@ AChangeNumberButton::AChangeNumberButton()
 	PrimaryActorTick.bCanEverTick = true;
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
-	Mesh->bGenerateOverlapEvents = true;
+	Mesh->SetGenerateOverlapEvents(true);
 	RootComponent = Mesh;
 }
 
@@ -20,7 +20,6 @@ void AChangeNumberButton::BeginPlay()
 {
 	Super::BeginPlay();
 	Room->TotalSum = Room->GetNumbersToChooseFrom()[0];
-	
 }
 
 // Called every frame
@@ -46,5 +45,5 @@ void AChangeNumberButton::CycleNumbers()
 	CurrentNumberToShow = Numbers[IndexPointer];
 
 	UE_LOG(LogTemp, Warning, TEXT("Current number: %d"), CurrentNumberToShow)
-		Room->TotalSum = CurrentNumberToShow;
+	Room->TotalSum = CurrentNumberToShow;
 }

@@ -25,15 +25,10 @@ class PROJECTONE_API ARoom : public AActor
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this actor's properties
 	ARoom();
 
-protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:
-	// Called every frame
+	
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable)
@@ -54,12 +49,11 @@ public:
 	UPROPERTY(EditAnywhere, Category="Setup")
 	TArray<int> NumbersToChooseFrom;
 
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
+	UPROPERTY(EditAnywhere)
 	ARoom* RoomToGetX;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
+	UPROPERTY(EditAnywhere)
 	ARoom* RoomToGetY;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
+	UPROPERTY(EditAnywhere)
 	ARoom* RoomToGetZ;
 
 	int DoMaths(EOperators Value, int X, int Y = 0, int Z = 0);

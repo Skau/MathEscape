@@ -3,16 +3,15 @@
 #include "PlayerCharacter.h"
 #include "Components/CapsuleComponent.h"
 #include "ChangeNumberButton.h"
-
+#include "Components/InputComponent.h"
+#include "GameFramework/Controller.h"
 // Sets default values
 APlayerCharacter::APlayerCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	GetCapsuleComponent()->bGenerateOverlapEvents = true;
-
-
+	GetCapsuleComponent()->SetGenerateOverlapEvents(true);
 }
 
 void APlayerCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -77,16 +76,18 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	// Moving functions
-	PlayerInputComponent->BindAxis("MoveX", this, &APlayerCharacter::MoveX);
-	PlayerInputComponent->BindAxis("MoveY", this, &APlayerCharacter::MoveY);
+	if (PlayerInputComponent)
+	{
+		// Moving functions
+		PlayerInputComponent->BindAxis("MoveX", this, &APlayerCharacter::MoveX);
+		PlayerInputComponent->BindAxis("MoveY", this, &APlayerCharacter::MoveY);
 
-	// Looking functions
-	PlayerInputComponent->BindAxis("LookPitch", this, &APlayerCharacter::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("LookYaw", this, &APlayerCharacter::AddControllerYawInput);
+		// Looking functions
+		PlayerInputComponent->BindAxis("LookPitch", this, &APlayerCharacter::AddControllerPitchInput);
+		PlayerInputComponent->BindAxis("LookYaw", this, &APlayerCharacter::AddControllerYawInput);
 
-
-	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &APlayerCharacter::Interact);
+		PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &APlayerCharacter::Interact);
+	}
 }
 
 void APlayerCharacter::MoveX(float Value)

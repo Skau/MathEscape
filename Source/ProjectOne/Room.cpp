@@ -53,9 +53,6 @@ int ARoom::DoMaths(EOperators Value, int X, int Y, int Z)
 	int Sum = 0;
 	switch (Value)
 	{
-	case EOperators::NONE:
-
-		break;
 	case EOperators::ADD:
 		Sum = Add(X, Y, Z);
 		break;
@@ -64,8 +61,6 @@ int ARoom::DoMaths(EOperators Value, int X, int Y, int Z)
 		break;
 	case EOperators::MULTIPLY:
 		Sum = Multiply(X, Y, Z);
-		break;
-	default:
 		break;
 	}
 	return Sum;
@@ -83,5 +78,4 @@ int ARoom::Multiply(int X, int Y, int Z)
 	}
 
 	return X * Y * Z;
-
 }
